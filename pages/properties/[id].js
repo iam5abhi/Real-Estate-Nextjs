@@ -22,7 +22,7 @@ const SingleProperty = () => {
     <header className="w-full container mx-auto  rounded-b">
                 <section>
                     <a href="#">
-                        <img src="/image/frontbanner3.jpg" />
+                        <img src="/image/front-banner2.jpg" />
                     </a>
                 </section>
             </header>

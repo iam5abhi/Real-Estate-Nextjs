@@ -1,29 +1,46 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Axios from 'axios';
 
 const QueryForm = () => {
+    const [queryData,setQueryData]=useState()
+
+
+    const OnChangeHandler =(event)=>{
+        setQueryData((pre)=>({
+            ...pre,
+            [event.target.name]:event.target.value
+        }))
+    }
+
+    const handleSubmit = async (event) => {
+        event.preventDefault()
+        const data = await Axios.post(`http://localhost:7000/add-client-info`,queryData);
+        console.log(data)
+    }
+        
   return (
     <aside className="w-full md:w-1/3 flex flex-col items-center px-10 h-screen sticky top-0  -mt-32  hidden lg:block">
     <div className="w-full bg-white shadow-2xl flex flex-col my-10 p-6 rounded">
-        <form className>
+        <form onSubmit={handleSubmit}>
             <p className="text-2xl text-gray-800 font-semibold pb-1">Let us call you!</p>
             <p className="text-sm font-normal pb-5 text-gray-400">To help you choose your property</p>
             <div className="mb-4">
                 <label className="block text-gray-800 text-sm font-medium mb-2" htmlFor="name">
                     Your Name
                 </label>
-                <input type="text" id="name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter your name" required />
+                <input type="text" id="name" name='name' onChange={OnChangeHandler} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter your name" required />
             </div>
             <div className="mb-4">
                 <label className="block text-gray-800 text-sm font-medium mb-2" htmlFor="name">
                     Your Email
                 </label>
-                <input type="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter your email" required />
+                <input type="email" id="email" name='email' onChange={OnChangeHandler} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter your email" required />
             </div>
             <div className="mb-8">
                 <label className="block text-gray-800 text-sm font-medium mb-2" htmlFor="name">
                     Your Number
                 </label>
-                <input type="tel" id="phone" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter your number" required />
+                <input type="text" id="phone_name" name='phoneNumber' onChange={OnChangeHandler} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter your number" required />
             </div>
             <div className="flex items-start mb-6">
                 <div className="flex items-center h-5">
