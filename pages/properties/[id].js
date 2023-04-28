@@ -22,7 +22,7 @@ const SingleProperty = () => {
     <header className="w-full container mx-auto  rounded-b">
                 <section>
                     <a href="#">
-                        <img src="/image/front-banner2.jpg" />
+                        <img src="/image/frontbanner3.jpg" />
                     </a>
                 </section>
             </header>
@@ -99,7 +99,7 @@ const SingleProperty = () => {
             </section>
             {/*Main section end */}
             {/* Sidebar Section */}
-            <QueryForm />
+            <QueryForm id={router.query.id} />
             {/*----Sidebar section end*/}
         </div>
         {/*----------Main container end*/}
